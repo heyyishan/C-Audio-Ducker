@@ -225,12 +225,9 @@ static void tui_log(const char *fmt, ...) {
   va_start(ap, fmt);
 
   int idx = (g_tui.log_head + g_tui.log_count) % TUI_LOG_LINES;
-  if (g_tui.log_count >= TUI_LOG_LINES) {
+  if (g_tui.log_count >= TUI_LOG_LINES)
     g_tui.log_head = (g_tui.log_head + 1) % TUI_LOG_LINES;
-  } else {
-    g_tui.log_count++;
-  }
-
+  g_tui.log_count++;
   vsnprintf(g_tui.log_lines[idx], TUI_LOG_LINE_LEN, fmt, ap);
   va_end(ap);
 
